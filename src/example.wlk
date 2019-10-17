@@ -7,14 +7,17 @@ class Estudiantes{
 	var materiasInscriptas=[]
 	method inscripcionAMaterias(materia){materiasInscriptas.add(materia)}
 	method inscripcionACarrera(carrera){ carreras.add(carrera)}
-	method puedeInscribirse(materia){return 
-		not self.estaAprobada(materia) and self.materiaCorrespondeALaCarrera(materia) 
-			and self.noEstaInscriptoAEsaMateria(materia) and self.tieneAprobadasLasMateriasRequisito(materia)
+	method puedeInscribirse(materia){
+		return 
+		not self.estaAprobada(materia) 
+		and self.materiaCorrespondeALaCarrera(materia) 
+		and self.noEstaInscriptoAEsaMateria(materia) 
+		and self.tieneAprobadasLasMateriasRequisito(materia)
 		
 	}
 	method inscribirAUnEstudiante(materia){
-		if(self.puedeInscribirse(materia)){self.inscribir(materia)}
-		else {self.error("NO SE PUEDE INSCRIBIR")}
+		if(not self.puedeInscribirse(materia)){self.error("NO SE PUEDE INSCRIBIR")}
+		else {self.inscribir(materia)}
 	}
 	method inscribir(materia){
 		materia.inscribirAlumno(self)
